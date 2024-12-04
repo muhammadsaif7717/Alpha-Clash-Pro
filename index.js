@@ -20,8 +20,8 @@ function getARandomAlphabet() {
     return alphabet;
 }
 
-function setBackgroundColorById(elementId){
-    const element=document.getElementById(elementId);
+function setBackgroundColorById(elementId) {
+    const element = document.getElementById(elementId);
     element.classList.add('bg-orange-400');
 }
 // reusable functions end
@@ -37,12 +37,35 @@ function play() {
     continueGame();
 }
 
-function continueGame(){
-    const alphabet= getARandomAlphabet();
-    console.log("Your random alphabet: ",alphabet);
+function continueGame() {
+    const alphabet = getARandomAlphabet();
+    // console.log("Your random alphabet: ",alphabet);
 
-    const currentAlphabetElement= document.getElementById('current-alphabet');
-    currentAlphabetElement.innerHTML= alphabet;
+    const currentAlphabetElement = document.getElementById('current-alphabet');
+    currentAlphabetElement.innerHTML = alphabet;
 
     setBackgroundColorById(alphabet)
 }
+
+function handleKeyboardButtonPress(event) {
+    const playerPressed = event.key;
+    console.log("Player Pressed: ", playerPressed);
+
+    // get expected press
+    const currentAlphabetElement = document.getElementById('current-alphabet');
+    const currentAlphabet = currentAlphabetElement.innerText;
+    const expectedAlphabet = currentAlphabet.toLowerCase();
+    console.log("Current Alphabet: ", currentAlphabet);
+    console.log(playerPressed, expectedAlphabet);
+
+    // Chack matched or not
+    if (playerPressed === expectedAlphabet) {
+        console.log("You get a point")
+    }
+    else {
+        console.log("You lost a life")
+    }
+};
+
+document.addEventListener('keyup', handleKeyboardButtonPress)
+
